@@ -2,9 +2,21 @@
 
 ## Overview
 
-Stwitter (Simple Switter) is a stripped down social media service.
+Stwitter (Simple Switter) is a stripped down social media service. It is comprised of two microservices post and comment, and one edge service stwitter.
 
-
+## Tools and Teachnologies
+* spring boot
+* spring cloud config server : https://github.com/snihank/u2m2-config-server
+* eureka service registry
+* spring jdbc template
+* java 303
+* jUnit
+* mockito
+* swagger api
+* rabbitMQ
+* rest template
+* feign
+* spring cache
 
 ## Component Specifications
 
