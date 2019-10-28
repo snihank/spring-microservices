@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  title: "Stwitter Project"
+  description: >-
+    A cloud service for posts and associated comments using feign and edge service
+  version: "0.0.1"
+servers:
+  - url: 'http://localhost:1777'
+    description: "Local dev server for post"
+  - url: 'http://localhost:6868'
+    description: "Local dev server for comment"
+paths:
+  /posts/{id}:
+    get:
+      summary: "Retrieves single post based on post"
+      description: "post_id is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "post_id to retrieve a single post"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "An object of post"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Post'
+  
+    put:
+      summary: "Updates a single post based on post_id"
+      description: "post_id is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "post_id for a specific task"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: "A message"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Post'
+    delete:
+      summary: "Deletes a single post based on post_id"
+      description: "post_id is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "post_id for a specific task"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "A message"
+          content:
+            application/json:
+              schema:
+                type: "string"
+                items: 
+                  $ref: '#/components/schemas/Post'
+  /posts:
+    get:
+      summary: "Retrieves list of all posts"
+      responses:
+        '200':
+          description: "A list of objects of posts"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items: 
+                  $ref: '#/components/schemas/Post'
+    post:
+      summary: "Creates single post based on post_id"
+      description: "post_id is primary key"
+      parameters: 
+        - name: "Id"
+          in: "path"
+          required: true
+          description: "post_id to create a book"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: "An object of post"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Post'
+
+  /comment/{id}:
+    get:
+      summary: "Retrieves single comment based on comment_id"
+      description: "comment_id is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "comment_id to retrieve a single comment"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "An object of comment"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Comment'
+  
+    put:
+      summary: "Updates a single comment based on comment_id"
+      description: "comment_id is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "comment_id for a specific comment"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          description: "A message"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Comment'
+    delete:
+      summary: "Deletes a single comment based on comment_id"
+      description: "comment_id is primary key"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "comment_id for a specific task"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      responses:
+        '200':
+          description: "A message"
+          content:
+            application/json:
+              schema:
+                type: "string"
+                items: 
+                  $ref: '#/components/schemas/Comment'
+  /comments:
+    get:
+      summary: "Retrieves list of all comments"
+      responses:
+        '200':
+          description: "A list of objects of comment"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items: 
+                  $ref: '#/components/schemas/Comment'
+    post:
+      summary: "Creates single comment based on comment_id"
+      description: "comment_id is primary key"
+      parameters: 
+        - name: "Id"
+          in: "path"
+          required: true
+          description: "comment_id to create a comment"
+          schema:
+            type: "number"
+            format: int64
+            minimum: 1
+            maximum: 11
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          description: "An object of comment"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                items: 
+                  $ref: '#/components/schemas/Comment'
+
+    
+  
+ 
+components:
+  schemas:
+    Post:
+      properties:
+        post_id:
+          type: "number"
+        post_date:
+          type: "string"
+        poster_name:
+          type: "string"
+        post:
+          type: "string"
+      required:
+        - "post_date"
+        - "poster_name"
+    Comment:
+      properties:
+        comment_id:
+          type: "number"
+        post_id:
+          type: "number"
+        create_date:
+          type: "string"
+        commenter_name:
+          type: "string"
+        comment:
+          type: "string"
+      required:
+        - "post_id"
+        - "create_date"
+        - "commenter_name"
+          
+    
